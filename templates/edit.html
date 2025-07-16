@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Entry</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .form-control, .form-select {
+      background-color: #222;
+      color: #eee;
+      border: 1px solid #444;
+    }
+    .form-control:focus, .form-select:focus {
+      background-color: #333;
+      color: #fff;
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 0.2rem rgb(13 110 253 / 0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <h2 class="mb-4">Edit: {{ movie[1] }}</h2>
+    <form method="POST" action="">
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input name="title" type="text" class="form-control" value="{{ movie[1] }}" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Type</label>
+        <select name="type" class="form-select" required>
+          <option value="movie" {% if movie[2] == 'movie' %}selected{% endif %}>Movie</option>
+          <option value="series" {% if movie[2] == 'series' %}selected{% endif %}>Series</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Notes / Strategy</label>
+        <input name="notes" type="text" class="form-control" value="{{ movie[3] }}">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Trailer URL</label>
+        <input name="trailer" type="url" class="form-control" value="{{ movie[4] }}">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Rating</label>
+        <select name="rating" class="form-select" required>
+          {% for r in range(1,6) %}
+          <option value="{{ r }}" {% if movie[7] == r %}selected{% endif %}>{{ '⭐' * r }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Priority</label>
+        <select name="priority" class="form-select" required>
+          <option value="High" {% if movie[8] == 'High' %}selected{% endif %}>High Priority</option>
+          <option value="Medium" {% if movie[8] == 'Medium' %}selected{% endif %}>Medium Priority</option>
+          <option value="Low" {% if movie[8] == 'Low' %}selected{% endif %}>Low Priority</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <a href="{{ url_for('index') }}" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

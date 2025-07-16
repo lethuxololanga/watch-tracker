@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Download Requests</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+  <div class="container py-5">
+    <h2 class="mb-4">📩 Download Requests</h2>
+    <a href="/" class="btn btn-secondary mb-4">← Back to Tracker</a>
+    <table class="table table-dark table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Movie</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Requested At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+        <tr>
+          <td>{{ r[0] }}</td>
+          <td>{{ r[1] }}</td>
+          <td>{{ r[2] }}</td>
+          <td>{{ r[3] }}</td>
+          <td>{{ r[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
